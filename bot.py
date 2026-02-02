@@ -19,7 +19,8 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def start(message: types.Message):
-    webAppInfo = types.WebAppInfo(url="https://tg-bot-lorian2217.amvera.io/")
+    # webAppInfo = types.WebAppInfo(url="https://tg-bot-lorian2217.amvera.io/")
+    webAppInfo = types.WebAppInfo(url="@ckr_example_bot")
     builder = ReplyKeyboardBuilder()
     builder.add(types.KeyboardButton(text='Отправить данные', web_app=webAppInfo))
     
