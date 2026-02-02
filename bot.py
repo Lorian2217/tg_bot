@@ -19,6 +19,8 @@ async def start(message: types.Message):
     webAppInfo = types.WebAppInfo(url="https://tg-bot-lorian2217.amvera.io/")
     builder = ReplyKeyboardBuilder()
     builder.add(types.KeyboardButton(text='Отправить данные', web_app=webAppInfo))
+
+    builder.adjust(1)
     
     await message.answer(text='Привет!', reply_markup=builder.as_markup())
 
