@@ -8,9 +8,6 @@ from aiogram.utils.keyboard import ReplyKeyboardBuilder
 from aiogram.enums.content_type import ContentType
 from aiogram.filters import CommandStart
 from aiogram.enums.parse_mode import ParseMode
-from dotenv import find_dotenv, load_dotenv
-
-load_dotenv(find_dotenv())
 
 logging.basicConfig(level=logging.INFO)
 
@@ -19,8 +16,7 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def start(message: types.Message):
-    # webAppInfo = types.WebAppInfo(url="https://tg-bot-lorian2217.amvera.io/")
-    webAppInfo = types.WebAppInfo(url="@ckr_example_bot")
+    webAppInfo = types.WebAppInfo(url="https://tg-bot-lorian2217.amvera.io/")
     builder = ReplyKeyboardBuilder()
     builder.add(types.KeyboardButton(text='Отправить данные', web_app=webAppInfo))
     
