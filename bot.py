@@ -1,16 +1,20 @@
 import asyncio
 import logging
+import json
 import os
 
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, F
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
+from aiogram.enums.content_type import ContentType
+from aiogram.filters import CommandStart
+from aiogram.enums.parse_mode import ParseMode
 
 logging.basicConfig(level=logging.INFO)
 
 bot = Bot(os.getenv("TOKEN"))
 dp = Dispatcher()
 
-@dp.message()
+@dp.message(CommandStart())
 async def start(message: types.Message):
     webAppInfo = types.WebAppInfo(url="https://tg-bot-lorian2217.amvera.io/")
     builder = ReplyKeyboardBuilder()
