@@ -16,10 +16,11 @@ dp = Dispatcher()
 
 
 @dp.message(CommandStart())
+    logging.info("Command /start received")
 async def start(message: types.Message):
     webAppInfo = types.WebAppInfo(url="https://tg-bots-lorian2217.amvera.io/")
     builder = ReplyKeyboardBuilder()
-    builder.add(types.KeyboardButton(text='Отправить данные'))
+    builder.add(types.KeyboardButton(text='Отправить данные', web_app=webAppInfo))
 
     await message.answer(
         text='Привет!',
