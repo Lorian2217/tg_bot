@@ -1,8 +1,20 @@
-<button id="sendBtn">Отправить</button>
-<script>
-const tg = window.Telegram.WebApp;
-document.getElementById("sendBtn").addEventListener("click", () => {
-    const msg = document.getElementById("message").value;
-    tg.sendData(msg); // данные отправляются боту
-});
-</script>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Telegram Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <h2>Отправка сообщения боту</h2>
+    <input type="text" id="message" placeholder="Введите сообщение" required>
+    <button id="sendBtn">Отправить</button>
+    <script>
+        const tg = window.Telegram.WebApp;
+        document.getElementById("sendBtn").addEventListener("click", () => {
+            const msg = document.getElementById("message").value;
+            tg.sendData(msg); // данные отправляются боту
+        });
+    </script>
+</body>
+</html>
