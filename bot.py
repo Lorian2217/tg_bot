@@ -10,6 +10,7 @@ from aiogram.filters import CommandStart
 from aiogram.enums.parse_mode import ParseMode
 
 logging.basicConfig(level=logging.INFO)
+logging.info("Скрипт bot.py запущен")
 
 bot = Bot(os.getenv("TOKEN"))
 dp = Dispatcher()
@@ -36,7 +37,6 @@ async def parse_data(message: types.Message):
     )
 
 async def main():
-    logging.info("Бот начинает работу. Запуск main()...")
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
