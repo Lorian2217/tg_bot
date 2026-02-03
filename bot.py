@@ -1,63 +1,26 @@
-import asyncio
-import json
-import logging
-import os
-from aiogram import Bot, Dispatcher, F, types
-from aiogram.filters import CommandStart
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
-from dotenv import load_dotenv
+from aiogram import Bot, Dispatcher, types
+from aiogram.types import WebAppInfo, InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.utils import executor
 
-logging.basicConfig(level=logging.INFO)
-load_dotenv()
+TOKEN = "8525154496:AAEAhLBWNSFSbuMlY00OyLw9EUUjNgGorak"  # вставь свой токен
+bot = Bot(token=TOKEN)
+dp = Dispatcher(bot)
 
-BOT_TOKEN = os.getenv("TOKEN")
-if not BOT_TOKEN:
-    raise RuntimeError("TOKEN не найден! Проверьте файл .env")
+# Старт
+@dp.message_handler(commands=['start'])
+async def start_cmd(message: types.Message):
+    # Кнопка для запуска веб-приложения
+    keyboard = InlineKeyboardMarkup()
+    web_app_url = "https://yourdomain.com"  # адрес, где будет ваше HTML
+    keyboard.add(InlineKeyboardButton(text="Открыть Mini App", web_app=WebAppInfo(url=web_app_url)))
+    
+    await message.answer("Привет! Открой мини-приложение:", reply_markup=keyboard)
 
-bot = Bot(BOT_TOKEN)
-dp = Dispatcher()
-
-
-@dp.message(CommandStart())
-async def start(message: types.Message):
-    """
-    Отправка кнопки для открытия Mini App
-    """
-    web_app_url = "https://tg-bot-lorian2217.amvera.io/miniapp/index.html"
-
-    inline_kb = InlineKeyboardMarkup(
-        inline_keyboard=[
-            [InlineKeyboardButton(text="Открыть Mini App", web_app=WebAppInfo(url=web_app_url))]
-        ]
-    )
-
-    await message.answer(
-        "Привет! Нажми кнопку, чтобы открыть Mini App 👇",
-        reply_markup=inline_kb
-    )
-
-
-@dp.message(F.web_app_data)
-async def parse_webapp_data(message: types.Message):
-    """
-    Получаем данные от Mini App
-    """
-    try:
-        data = json.loads(message.web_app_data.data)
-    except json.JSONDecodeError:
-        await message.answer("❌ Ошибка при разборе данных из Mini App.")
-        return
-
-    await message.answer(
-        f"📦 <b>Данные из Mini App:</b>\n<pre>{json.dumps(data, indent=2, ensure_ascii=False)}</pre>",
-        parse_mode="HTML"
-    )
-
-
-async def main():
-    await bot.delete_webhook(drop_pending_updates=True)
-    await dp.start_polling(bot)
-
+# Обработка данных, которые присылает Web App через tg.sendData()
+@dp.message_handler(content_types=types.ContentTypes.WEB_APP_DATA)
+async def web_app_data(message: types.Message):
+    data = message.web_app_data.data
+    await message.answer(f"Я получил ваше сообщение: {data}")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    executor.start_polling(dp, skip_updates=True)
