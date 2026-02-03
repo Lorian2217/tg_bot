@@ -1,45 +1,94 @@
 import asyncio
-import logging
 import json
+import logging
 import os
 
-from aiogram import Bot, Dispatcher, types, F
-from aiogram.utils.keyboard import ReplyKeyboardBuilder
-from aiogram.enums.content_type import ContentType
+from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import CommandStart
-from aiogram.enums.parse_mode import ParseMode
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
-
+from aiogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    ReplyKeyboardMarkup,
+    KeyboardButton,
+    WebAppInfo,
+)
 
 logging.basicConfig(level=logging.INFO)
 
-bot = Bot(os.getenv("TOKEN"))
+load_dotenv()
+
+BOT_TOKEN = os.getenv("TOKEN")
+
+if not BOT_TOKEN:
+    raise RuntimeError("TOKEN не найден")
+
+bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
+
 
 @dp.message(CommandStart())
 async def start(message: types.Message):
-    webAppInfo = types.WebAppInfo(url="https://tg-bot-lorian2217.amvera.io/")
+    web_app_url = "https://tg-bot-lorian2217.amvera.io/"
+
+    # Inline-кнопка (рекомендуется)
+    inline_kb = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="Открыть Mini App",
+                    web_app=WebAppInfo(url=web_app_url),
+                )
+            ]
+        ]
+    )
+
+    await message.answer(
+        "Привет! Открой Mini App 👇",
+        reply_markup=inline_kb
+    )
+
+    # Reply-кнопка (тоже рабочая, но хуже UX)
+    reply_kb = ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(
+                    text="Открыть Mini App",
+                    web_app=WebAppInfo(url=web_app_url),
+                )
+            ]
+        ],
+        resize_keyboard=True
+    )
+
+    await message.answer(
+        "Или через обычную кнопку:",
+        reply_markup=reply_kb
+    )
 
 
-    kb = InlineKeyboardMarkup(inline_keyboard=[ [ InlineKeyboardButton( text="Открыть WebApp", web_app=WebAppInfo( url="https://tg-bot-lorian2217.amvera.io/" ) ) ] ])
-    await message.answer("Привет!", reply_markup=kb)
-    
+@dp.message(F.web_app_data)
+async def parse_webapp_data(message: types.Message):
+    """
+    Ловим данные, отправленные из Mini App
+    Telegram.WebApp.sendData(...)
+    """
+    try:
+        data = json.loads(message.web_app_data.data)
+    except json.JSONDecodeError:
+        await message.answer("❌ Ошибка данных")
+        return
 
-    builder = ReplyKeyboardBuilder()
-    builder.add(types.KeyboardButton(text='Отправить данные', web_app=webAppInfo))
+    await message.answer(
+        f"📦 <b>Данные из Mini App</b>\n\n"
+        f"<pre>{json.dumps(data, indent=2, ensure_ascii=False)}</pre>",
+        parse_mode="HTML"
+    )
 
-    builder.adjust(1)
-    
-    await message.answer(text='Привет!', reply_markup=builder.as_markup())
-
-@dp.message(F.content_type == ContentType.WEB_APP_DATA)
-async def parse_data(message: types.Message):
-    data = json.loads(message.web_app_data.data)
-    await message.answer(f'<b>{data["title"]}</b>\n\n<code>{data["desc"]}</code>\n\n{data["text"]}', parse_mode=ParseMode.HTML)
 
 async def main():
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
-    
+
+
 if __name__ == "__main__":
     asyncio.run(main())
