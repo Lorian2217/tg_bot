@@ -17,7 +17,8 @@ logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
 
-BOT_TOKEN = os.getenv("TOKEN")
+# BOT_TOKEN = os.getenv("TOKEN")
+BOT_TOKEN = "8525154496:AAEAhLBWNSFSbuMlY00OyLw9EUUjNgGorak"
 
 if not BOT_TOKEN:
     raise RuntimeError("TOKEN не найден")
