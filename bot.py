@@ -16,7 +16,6 @@ dp = Dispatcher()
 
 
 @dp.message(CommandStart())
-    logging.info("Command /start received")
 async def start(message: types.Message):
     webAppInfo = types.WebAppInfo(url="https://tg-bots-lorian2217.amvera.io/")
     builder = ReplyKeyboardBuilder()
@@ -37,6 +36,7 @@ async def parse_data(message: types.Message):
     )
 
 async def main():
+    logging.info("Бот начинает работу. Запуск main()...")
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
