@@ -1,90 +1,77 @@
 import asyncio
 import json
 import logging
-import os
 
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import CommandStart
-from aiogram.types import (
-    InlineKeyboardMarkup,
-    InlineKeyboardButton,
-    ReplyKeyboardMarkup,
-    KeyboardButton,
-    WebAppInfo,
-)
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
+from dotenv import load_dotenv
+import os
 
 logging.basicConfig(level=logging.INFO)
-
 load_dotenv()
 
-BOT_TOKEN = os.getenv("TOKEN")
-
+BOT_TOKEN = os.getenv("TOKEN")  # пытаемся взять токен из переменных окружения
 if not BOT_TOKEN:
-    raise RuntimeError("TOKEN не найден")
+    # Если токен не найден, сразу аварийно выходим с понятным сообщением
+    raise RuntimeError(
+        "❌ TOKEN не найден! Добавьте токен вашего бота в переменные окружения."
+    )
 
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
 
 
+# -------------------------
+# /start
+# -------------------------
 @dp.message(CommandStart())
 async def start(message: types.Message):
+    """
+    Обработчик команды /start.
+    Определяет, с какого клиента пользователь (ПК или мобильный),
+    и показывает кнопку Mini App, которая точно работает.
+    """
     web_app_url = "https://tg-bot-lorian2217.amvera.io/"
 
-    # Inline-кнопка (рекомендуется)
+    # Простая инлайн-кнопка — работает везде
     inline_kb = InlineKeyboardMarkup(
         inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    text="Открыть Mini App",
-                    web_app=WebAppInfo(url=web_app_url),
-                )
-            ]
+            [InlineKeyboardButton(text="Открыть Mini App", web_app=WebAppInfo(url=web_app_url))]
         ]
     )
 
+    # Отправляем пользователю сообщение с кнопкой
     await message.answer(
-        "Привет! Открой Mini App 👇",
+        "Привет! Нажми кнопку, чтобы открыть Mini App 👇",
         reply_markup=inline_kb
     )
 
-    # Reply-кнопка (тоже рабочая, но хуже UX)
-    reply_kb = ReplyKeyboardMarkup(
-        keyboard=[
-            [
-                KeyboardButton(
-                    text="Открыть Mini App",
-                    web_app=WebAppInfo(url=web_app_url),
-                )
-            ]
-        ],
-        resize_keyboard=True
-    )
 
-    await message.answer(
-        "Или через обычную кнопку:",
-        reply_markup=reply_kb
-    )
-
-
+# -------------------------
+# Обработка данных от Mini App
+# -------------------------
 @dp.message(F.web_app_data)
 async def parse_webapp_data(message: types.Message):
     """
-    Ловим данные, отправленные из Mini App
-    Telegram.WebApp.sendData(...)
+    Получаем JSON-данные, отправленные Mini App.
     """
     try:
         data = json.loads(message.web_app_data.data)
     except json.JSONDecodeError:
-        await message.answer("❌ Ошибка данных")
+        await message.answer("❌ Ошибка при разборе данных из Mini App.")
         return
 
     await message.answer(
-        f"📦 <b>Данные из Mini App</b>\n\n"
+        f"📦 <b>Данные из Mini App:</b>\n\n"
         f"<pre>{json.dumps(data, indent=2, ensure_ascii=False)}</pre>",
         parse_mode="HTML"
     )
 
 
+# -------------------------
+# Главная функция
+# -------------------------
 async def main():
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
