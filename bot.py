@@ -8,7 +8,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 from dotenv import load_dotenv
 
 logging.basicConfig(level=logging.INFO)
-load_dotenv()
+load_dotenv() 
 
 BOT_TOKEN = os.getenv("TOKEN")
 if not BOT_TOKEN:
