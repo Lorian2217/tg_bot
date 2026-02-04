@@ -1,27 +1,44 @@
-import requests
-from flask import Flask, request, jsonify
+import asyncio
+import logging
+import json
+import os
 
-app = Flask(__name__)
+from aiogram import Bot, Dispatcher, types, F
+from aiogram.utils.keyboard import ReplyKeyboardBuilder
+from aiogram.enums.content_type import ContentType
+from aiogram.filters import CommandStart
+from aiogram.enums.parse_mode import ParseMode
 
-TELEGRAM_API_URL = "https://api.telegram.org/bot8525154496:AAEAhLBWNSFSbuMlY00OyLw9EUUjNgGorak/sendMessage"
+logging.basicConfig(level=logging.INFO)
+logging.info("Скрипт bot.py запущен")
 
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    data = request.json
+bot = Bot(os.getenv("TOKEN"))
+dp = Dispatcher()
 
-    if "callback_query" in data:
-        callback_data = data['callback_query']['data']
-        chat_id = data['callback_query']['message']['chat']['id']
-        message = f"Вы выбрали: {callback_data}"
 
-        payload = {
-            'chat_id': chat_id,
-            'text': message
-        }
+@dp.message(CommandStart())
+async def start(message: types.Message):
+    webAppInfo = types.WebAppInfo(url="https://tg-bots-lorian2217.amvera.io/")
+    builder = ReplyKeyboardBuilder()
+    builder.add(types.KeyboardButton(text='Отправить данные', web_app=webAppInfo))
 
-        response = requests.post(TELEGRAM_API_URL, data=payload)
-        return jsonify(response.json()), 200
-    return '', 200
+    await message.answer(
+        text='Привет!',
+        reply_markup=builder.as_markup()
+    )
 
-if __name__ == '__main__':
-    app.run(port=5000)
+
+@dp.message(F.content_type == ContentType.WEB_APP_DATA)
+async def parse_data(message: types.Message):
+    data = json.loads(message.web_app_data.data)
+    await message.answer(
+        f'<b>{data["title"]}</b>\n\n<code>{data["desc"]}</code>\n\n{data["text"]}',
+        parse_mode=ParseMode.HTML
+    )
+
+async def main():
+    await bot.delete_webhook(drop_pending_updates=True)
+    await dp.start_polling(bot)
+
+if __name__ == "__main__":
+    asyncio.run(main())
