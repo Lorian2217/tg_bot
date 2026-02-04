@@ -87,8 +87,8 @@
     <script>
         let tg = window.Telegram.WebApp;
 
-        let fBtn = document.getElementsByClassName("f-btn")[0]
-        let sBtn = document.getElementsByClassName("s-btn")[0]
+        let fBtn = document.getElementsByClassName("f-btn")[0];
+        let sBtn = document.getElementsByClassName("s-btn")[0];
 
         fBtn.addEventListener("click", () => {
             document.getElementsByClassName("Main")[0].style.display = "none";
@@ -106,7 +106,17 @@
                 text: text.value
             }
 
-            tg.sendData(JSON.stringify(data));
+            let keyboard = {
+                inline_keyboard: [
+                    [
+                        { text: "Кнопка 1", callback_data: "button_1" },
+                        { text: "Кнопка 2", callback_data: "button_2" }
+                    ]
+                ]
+            };
+
+            // tg.sendData(JSON.stringify(data));
+            tg.sendData(JSON.stringify({keyboard: keyboard}));
         });
     </script>
 </body>
