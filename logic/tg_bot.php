@@ -1,12 +1,17 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+require __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-$botToken = $_ENV['TOKEN'];
+$botToken = getenv('TOKEN');
 
-if (empty($botToken)) echo 'Значение токена пустое!'; exit;
+if (!$botToken) {
+    throw new Exception('TOKEN not found');
+}
 
 // Получаем данные из формы (пример для POST)
 $name = htmlspecialchars($_POST['name'] ?? '');
