@@ -6,6 +6,8 @@ $dotenv->load();
 
 $botToken = $_ENV['TOKEN'];
 
+if (empty($botToken)) echo 'Значение токена пустое!'; exit;
+
 // Получаем данные из формы (пример для POST)
 $name = htmlspecialchars($_POST['name'] ?? '');
 $email = htmlspecialchars($_POST['email'] ?? '');
