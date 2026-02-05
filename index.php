@@ -93,7 +93,7 @@
         <input type="email" name="email" placeholder="Email" required>
         <textarea name="message" placeholder="Сообщение" required></textarea>
 
-        <input type="hidden" name="chat_id" id="chatIdField">
+        <input type="hidden" name="chat_id" id="chatIdField"> 
 
         <button type="submit">Отправить</button>
     </form>
