@@ -7,7 +7,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
-$botToken = getenv('TOKEN');
+$botToken = $_ENV['TOKEN'];
 
 if (!$botToken) {
     throw new Exception('TOKEN not found');
