@@ -4,7 +4,7 @@ require __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$token = $_ENV['TOKEN'];
+$botToken = $_ENV['TOKEN'];
 
 // Получаем данные из формы (пример для POST)
 $name = htmlspecialchars($_POST['name'] ?? '');
