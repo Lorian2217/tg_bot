@@ -1,3 +1,14 @@
+<?
+// require __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+
+echo '<pre>';
+print_r( __DIR__ );
+echo '</pre>';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
