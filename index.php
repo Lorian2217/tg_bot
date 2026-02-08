@@ -44,7 +44,7 @@
             });
 
             let msg = await res.json();
-            alert(msg);
+            alert( JSON.stringify(msg, null, 2) );
         } catch (err) {
             alert(err.message);
         }
