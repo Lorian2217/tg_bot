@@ -42,9 +42,8 @@
 
     document.getElementById('chatIdField').value = chatId;
 
-    alert( JSON.stringify(Telegram.WebApp.initDataUnsafe.user, null, 2) );
-
     async function Auth(data) {
+
         try {
             const res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
                 method: 'POST',
@@ -66,30 +65,30 @@
             alert('Ошибка ' + err.message);
             return false;
         }
+
     }
 
     document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
+        const isAuthSuccess = await Auth(formData);
 
-        try {
-            await Auth(formData);
+        if (!isAuthSuccess) {
+            alert('Авторизация не пройдена. Отправка отменена.');
+            return;
+        }
 
-            const response = await fetch('https://cw809330.tw1.ru/logic/tg_bot.php', {
-                method: 'POST',
-                body: formData
-            });
+        const response = await fetch('https://cw809330.tw1.ru/logic/tg_bot.php', {
+            method: 'POST',
+            body: formData
+        });
 
-            const result = await response.json();
-            if (result.success) {
-                alert('Заявка отправлена!');
-            } else {
-                alert('Ошибка');
-            }
-
-        } catch (err) {
-            alert('Ошибка ' + err.message);
+        const result = await response.json();
+        if (result.success) {
+            alert('Заявка отправлена!');
+        } else {
+            alert('Ошибка');
         }
 
     });
