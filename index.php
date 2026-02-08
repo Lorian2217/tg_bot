@@ -36,7 +36,7 @@
     const chatId = Telegram.WebApp.initDataUnsafe.user.id;
     document.getElementById('chatIdField').value = chatId;
 
-    alert(Telegram.WebApp.initDataUnsafe.user);
+    alert( JSON.stringify(Telegram.WebApp.initDataUnsafe.user, null, 2) );
 
     async function Auth(data) {
         try {
