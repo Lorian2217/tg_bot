@@ -37,7 +37,6 @@
     document.getElementById('chatIdField').value = chatId;
 
     alert(Telegram.WebApp.initDataUnsafe.user);
-    return false;
 
     async function Auth(data) {
         try {
