@@ -34,23 +34,10 @@ $text .= "Сообщение: $message";
 // Отправляем в Telegram
 $url = "https://api.telegram.org/bot$botToken/sendMessage";
 
-$inlineKeyboard = [
-    'inline_keyboard' => [
-        [
-            ['text' => 'Программа лояльности', 'callback_data' => '/open']
-        ],
-        [
-            ['text' => 'Ряд 2, Кнопка 1', 'callback_data' => 'row2_btn1'],
-            ['text' => 'Кнопка 2', 'url' => 'https://example.com']
-        ]
-    ]
-];
-
 $data = [
     'chat_id' => $chatId,
     'text' => $text,
     'parse_mode' => 'HTML',
-    'reply_markup' => json_encode($inlineKeyboard)
 ];
 
 $options = [
