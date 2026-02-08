@@ -46,7 +46,7 @@
             let msg = await res.json();
             alert(msg);
         } catch (err) {
-            throw new Error(err.message);
+            alert(err.message);
         }
     }
 
