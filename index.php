@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="stylesheet" href="/library/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="/library/owl-carousel/owl.theme.default.min">
+    <link rel="stylesheet" href="/library/owl-carousel/owl.theme.default.min.css">
 </head>
 <body>
     <div class="Main">
