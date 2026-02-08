@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/library/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="/library/owl-carousel/owl.theme.default.min">
 </head>
 <body>
     <div class="Main">
@@ -75,7 +77,6 @@
         const isAuthSuccess = await Auth(formData);
 
         if (!isAuthSuccess) {
-            alert('Авторизация не пройдена. Отправка отменена.');
             return;
         }
 
@@ -93,5 +94,8 @@
 
     });
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="/library/owl-carousel/owl.carousel.min.js"></script>
 </body>
 </html>
