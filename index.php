@@ -37,10 +37,17 @@
     document.getElementById('chatIdField').value = chatId;
 
     async function Auth(data) {
-        let res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
-            method: 'POST',
-            body: data
-        });
+        try {
+            let res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
+                method: 'POST',
+                body: data
+            });
+
+            let msg = await res.json();
+            alert(msg);
+        } catch (err) {
+            throw new Error(err.message);
+        }
     }
 
     document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
@@ -48,24 +55,19 @@
 
         const formData = new FormData(e.target);
 
-        try {
-            await Auth(formData);
+        await Auth(formData);
 
-            const response = await fetch('https://cw809330.tw1.ru/logic/tg_bot.php', {
-                method: 'POST',
-                body: formData
-            });
+        const response = await fetch('https://cw809330.tw1.ru/logic/tg_bot.php', {
+            method: 'POST',
+            body: formData
+        });
 
-            const result = await response.json();
-            if (result.success) {
-                alert('Заявка отправлена!');
-            } else {
-                alert('Ошибка');
-            }
-        } catch (err) {
-            alert(err.message);
+        const result = await response.json();
+        if (result.success) {
+            alert('Заявка отправлена!');
+        } else {
+            alert('Ошибка');
         }
-
 
     });
     </script>
