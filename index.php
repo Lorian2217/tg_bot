@@ -36,6 +36,9 @@
     const chatId = Telegram.WebApp.initDataUnsafe.user.id;
     document.getElementById('chatIdField').value = chatId;
 
+    alert(Telegram.WebApp.initDataUnsafe.user);
+    return false;
+
     async function Auth(data) {
         try {
             let res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
@@ -55,7 +58,7 @@
 
         const formData = new FormData(e.target);
 
-        await Auth(formData);
+        // await Auth(formData);
 
         const response = await fetch('https://cw809330.tw1.ru/logic/tg_bot.php', {
             method: 'POST',
