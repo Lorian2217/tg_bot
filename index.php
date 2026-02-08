@@ -32,23 +32,39 @@
         document.getElementById('feedbackForm').style.display = "flex";
     });
 
-
+    // Набор переменных пользователя
     const chatId = Telegram.WebApp.initDataUnsafe.user.id;
+    const userName = Telegram.WebApp.initDataUnsafe.user.firstName;
+    const userSurname = Telegram.WebApp.initDataUnsafe.user.lastName;
+    const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
+    const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
+    // Набор переменных пользователя
+
     document.getElementById('chatIdField').value = chatId;
 
     alert( JSON.stringify(Telegram.WebApp.initDataUnsafe.user, null, 2) );
 
     async function Auth(data) {
         try {
-            let res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
+            const res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
                 method: 'POST',
                 body: data
             });
 
-            let msg = await res.json();
-            alert( JSON.stringify(msg, null, 2) );
+            const msg = await res.json();
+
+            if (!res.ok || !msg.success) {
+                const ErrorMessage = msg.error;
+                alert('Ошибка ' + ErrorMessage);
+                return false;
+            }
+
+            alert(msg.message);
+            return true;
+
         } catch (err) {
-            alert(err.message);
+            alert('Ошибка ' + err.message);
+            return false;
         }
     }
 
@@ -57,18 +73,23 @@
 
         const formData = new FormData(e.target);
 
-        // await Auth(formData);
+        try {
+            await Auth(formData);
 
-        const response = await fetch('https://cw809330.tw1.ru/logic/tg_bot.php', {
-            method: 'POST',
-            body: formData
-        });
+            const response = await fetch('https://cw809330.tw1.ru/logic/tg_bot.php', {
+                method: 'POST',
+                body: formData
+            });
 
-        const result = await response.json();
-        if (result.success) {
-            alert('Заявка отправлена!');
-        } else {
-            alert('Ошибка');
+            const result = await response.json();
+            if (result.success) {
+                alert('Заявка отправлена!');
+            } else {
+                alert('Ошибка');
+            }
+
+        } catch (err) {
+            alert('Ошибка ' + err.message);
         }
 
     });
