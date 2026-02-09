@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="Main">
-        <h1>Тестовое приложение <span class="userName"></span> </h1>
+        <h1>Тестовое приложение</h1>
         <img src="static/bot.png" alt="">
         <p></p>
         <button class="btn f-btn">Тест отправки данных</button>
@@ -48,8 +48,6 @@
     const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
     const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
     // Набор переменных пользователя
-
-    document.querySelector('userName').textContent = userName;
 
     document.getElementById('chatIdField').value = chatId;
 
