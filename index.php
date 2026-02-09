@@ -49,7 +49,7 @@
     const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
     // Набор переменных пользователя
 
-    document.getElementsByClassName('userName').append(userName);
+    document.getElementByClassName('userName').append(userName);
 
     document.getElementById('chatIdField').value = chatId;
 
