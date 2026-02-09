@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cw809330.tw1.ru/assets/style.css?v=2">
+    <link rel="stylesheet" href="/assets/style.css?v=2">
     <link rel="stylesheet" href="/library/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="/library/owl-carousel/owl.theme.default.min.css">
 </head>
 <body>
     <div class="Main">
-        <h1>Тестовое приложение</h1>
+        <h1>Тестовое приложение <span class="userName"></span> </h1>
         <img src="static/bot.png" alt="">
         <p></p>
         <button class="btn f-btn">Тест отправки данных</button>
     </div>
-    <div class="page_wrapper">
+    <div class="Main page_wrapper">
         <h2>Выберите куда перейти:</h2>
         <div class="btn_list">
             <a href="/pages/second.html">Вторая страница</a>
@@ -48,6 +48,8 @@
     const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
     const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
     // Набор переменных пользователя
+
+    document.getElementsByClassName('userName').append(userName);
 
     document.getElementById('chatIdField').value = chatId;
 
