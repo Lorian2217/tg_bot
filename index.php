@@ -15,6 +15,13 @@
         <p></p>
         <button class="btn f-btn">Тест отправки данных</button>
     </div>
+    <div class="page_wrapper">
+        <h2>Выберите куда перейти:</h2>
+        <div class="btn_list">
+            <a href="/pages/second.html">Вторая страница</a>
+            <a href="/pages/third.html">Третья страница</a>
+        </div>
+    </div>
     <form id="feedbackForm">
         <input type="text" name="name" placeholder="Ваше имя" required>
         <input type="email" name="email" placeholder="Email" required>

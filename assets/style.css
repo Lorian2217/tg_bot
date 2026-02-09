@@ -72,3 +72,7 @@ textarea {
     padding: 15px 10px;
     margin: 10px 0 0;
 }
+
+.page_wrapper {padding: 40px 0;}
+.page_wrapper .btn_list {display: flex; flex-wrap: wrap; gap: .5rem;}
+.page_wrapper .btn_list a {padding: 16px 30px; border: 1px solid #676767; border-radius: 20px; color: #fff; background: #F7F8FF;}
