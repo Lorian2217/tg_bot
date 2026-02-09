@@ -74,5 +74,5 @@ textarea {
 }
 
 .page_wrapper {padding: 40px 0;}
-.page_wrapper .btn_list {display: flex; flex-wrap: wrap; gap: .5rem;}
-.page_wrapper .btn_list a {padding: 16px 30px; border-color: unset; border-radius: 20px; color: #000; background: #F7F8FF;}
+.page_wrapper .btn_list {display: flex; flex-wrap: wrap; gap: .5rem; padding-top: 20px;}
+.page_wrapper .btn_list a {height: 60px; width: 150px; border-color: unset; border-radius: 20px; text-decoration: none; color: var(--tg-theme-button-text-color); background: var(--tg-theme-button-color);}
