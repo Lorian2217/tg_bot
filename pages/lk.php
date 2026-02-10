@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="../library/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="../library/owl-carousel/owl.theme.default.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             color: var(--tg-theme-text-color);
             background: var(--tg-theme-bg-color);
