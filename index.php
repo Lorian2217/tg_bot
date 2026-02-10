@@ -18,7 +18,7 @@
     <div class="Main page_wrapper">
         <h2>Выберите куда перейти:</h2>
         <div class="btn_list">
-            <a href="/pages/second.html">Вторая страница</a>
+            <a href="/pages/lk.php">Личный кабинет</a>
             <a href="/pages/third.html">Третья страница</a>
         </div>
     </div>
