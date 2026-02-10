@@ -35,8 +35,7 @@ textarea {border-radius: 5px; border: 2px solid #535353; padding: 15px 10px; mar
 .little-slider img {border-radius: 20px;}
 
 .services {display: flex; gap: 16px; align-items: stretch; justify-content: stretch;}
-.services .full {position: relative; padding: 15px; display: block; width: 50%; border-radius: 20px; background: url('../image/abstract-earth.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
+.services .full {position: relative; color: var(--tg-theme-text-color); font-size: 20px; padding: 15px; display: block; text-decoration: none; width: 50%; border-radius: 20px; background: url('../image/abstract-earth.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
 .services .half-wrapper {display: flex; flex-direction: column; gap: 16px;}
-.services .half {position: relative; padding: 15px; display: block; width: 100%; height: 200px; overflow: hidden; border-radius: 20px; background: url('../image/tropical-swiss.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
-.services .full .name, .services .half .name {color: var(--tg-theme-text-color); font-size: 20px;}
+.services .half {position: relative; color: var(--tg-theme-text-color); font-size: 20px; padding: 15px; display: block; text-decoration: none; width: 100%; height: 200px; overflow: hidden; border-radius: 20px; background: url('../image/tropical-swiss.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
 .services .full::before, .services .half::before {content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 25%; backdrop-filter: blur(1px); z-index: -1;}
