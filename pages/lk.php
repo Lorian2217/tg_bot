@@ -22,15 +22,15 @@
 
         <div class="services">
             <div class="full"> 
-                <div>Мои предложения</div>
+                <div class="name">Мои предложения</div>
             </div>
-            <div>
+            <div class="half-wrapper">
                 <div class="half">
-                    <div>CLUB PLAY</div>
+                    <div class="name">CLUB PLAY</div>
                     <div><sub>Начнём собирать баллы?</sub></div>
                 </div>
                 <div class="half">
-                    <div>Мои задания</div>
+                    <div class="name">Мои задания</div>
                 </div>
             </div>
         </div>
