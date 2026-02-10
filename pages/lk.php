@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../assets/style.css?v=3">
+    <link rel="stylesheet" href="../assets/style.css?v=3.1">
     <link rel="stylesheet" href="../library/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="../library/owl-carousel/owl.theme.default.min.css">
 </head>
 <body>
     <div class="Main">
-        <div>
+        <div class="info">
             <h1>Здравствуйте, {name}</h1>
             <div class="subtext">Рады видеть вас с нами!</div>
         </div>
