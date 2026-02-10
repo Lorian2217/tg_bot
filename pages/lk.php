@@ -19,6 +19,22 @@
             <a href="#"><img src="../image/gold-monstera.jpg" alt="image"></a>
             <a href="#"><img src="../image/tropical-swiss.jpg" alt="image"></a>
         </div>
+
+        <div class="services">
+            <div class="full"> 
+                <div>Мои предложения</div>
+            </div>
+            <div>
+                <div class="half">
+                    <div>CLUB PLAY</div>
+                    <div><sub>Начнём собирать баллы?</sub></div>
+                </div>
+                <div class="half">
+                    <div>Мои задания</div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
