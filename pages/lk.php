@@ -21,17 +21,17 @@
         </div>
 
         <div class="services">
-            <div class="full"> 
+            <a href="#" class="full"> 
                 <div class="name">Мои предложения</div>
-            </div>
+            </a>
             <div class="half-wrapper">
-                <div class="half">
+                <a href="#" class="half">
                     <div class="name">CLUB PLAY</div>
                     <div><sub>Начнём собирать баллы?</sub></div>
-                </div>
-                <div class="half">
+                </a>
+                <a href="#" class="half">
                     <div class="name">Мои задания</div>
-                </div>
+                </a>
             </div>
         </div>
 
