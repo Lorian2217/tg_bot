@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../assets/style.css?v=3.5">
     <link rel="stylesheet" href="../library/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="../library/owl-carousel/owl.theme.default.min.css">
     <style>
@@ -12,6 +11,17 @@
             color: var(--tg-theme-text-color);
             background: var(--tg-theme-bg-color);
         }
+        .Main {width: 100%; padding: 20px;}
+
+        .little-slider {padding-top: 30px; padding-bottom: 15px; min-height: 100px;}
+        .little-slider img {border-radius: 20px; margin: 0 auto;}
+
+        .services {display: flex; gap: 16px; align-items: stretch; justify-content: stretch;}
+        .services .full {position: relative; padding: 15px; display: block; text-decoration: none; width: 50%; border-radius: 20px; background: url('../image/abstract-earth.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
+        .services .half-wrapper {display: flex; flex-direction: column; gap: 16px;}
+        .services .half {position: relative; padding: 15px; display: block; text-decoration: none; width: 100%; height: 120px; overflow: hidden; border-radius: 20px; background: url('../image/tropical-swiss.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
+        .services .full::before, .services .half::before {content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 25%; backdrop-filter: blur(1px); z-index: -1;}
+        .services .half *, .services .full * {color: var(--tg-theme-text-color); font-size: 20px;}
     </style>
 </head>
 <body>
