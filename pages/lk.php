@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../assets/style.css?v=3.4">
+    <link rel="stylesheet" href="../assets/style.css?v=3.5">
     <link rel="stylesheet" href="../library/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="../library/owl-carousel/owl.theme.default.min.css">
+    <style>
+        body {
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+        }
+    </style>
 </head>
 <body>
     <div class="Main">
@@ -19,7 +25,6 @@
             <a href="#"><img src="../image/gold-monstera.jpg" alt="image"></a>
             <a href="#"><img src="../image/tropical-swiss.jpg" alt="image"></a>
         </div>
-
         <div class="services">
             <a href="#" class="full"> 
                 <div class="name">Мои предложения</div>
