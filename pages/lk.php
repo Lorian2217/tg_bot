@@ -18,15 +18,15 @@
         }
         .Main {width: 100%; padding: 20px;}
 
-        .little-slider {padding-top: 30px; padding-bottom: 15px; min-height: 100px;}
-        .little-slider img {border-radius: 20px; margin: 0 auto;}
+        .little-slider {padding-top: 30px; padding-bottom: 15px;}
+        .little-slider img {border-radius: 20px; margin-top: 0px; margin-bottom: 0px; min-height: 150px; width: 100%;}
 
         .services {display: flex; gap: 16px; align-items: stretch; justify-content: stretch;}
         .services .full {position: relative; padding: 15px; display: block; text-decoration: none; width: 50%; border-radius: 20px; background: url('../image/abstract-earth.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
         .services .half-wrapper {display: flex; flex-direction: column; gap: 16px;}
-        .services .half {position: relative; padding: 15px; display: block; text-decoration: none; width: 100%; height: 120px; overflow: hidden; border-radius: 20px; background: url('../image/tropical-swiss.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
+        .services .half {position: relative; padding: 15px; display: block; text-decoration: none; width: 100%; height: 100px; overflow: hidden; border-radius: 20px; background: url('../image/tropical-swiss.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
         .services .full::before, .services .half::before {content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 25%; backdrop-filter: blur(1px); z-index: -1;}
-        .services .half *, .services .full * {color: var(--tg-theme-text-color); font-size: 20px;}
+        .services .half *, .services .full * {color: var(--tg-theme-link-color); font-size: 16px;}
     </style>
 </head>
 <body>
@@ -58,6 +58,16 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="/library/owl-carousel/owl.carousel.min.js"></script>
-    <script src="../assets/scripts.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.little-slider.owl-carousel').owlCarousel({
+                loop: true,
+                dots: false,
+                nav: false,
+                margin: 10,
+                items: 1,
+            });
+        });
+    </script>
 </body>
 </html>
