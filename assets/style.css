@@ -27,3 +27,8 @@ textarea {border-radius: 5px; border: 2px solid #535353; padding: 15px 10px; mar
 .page_wrapper {padding: 40px 0;}
 .page_wrapper .btn_list {display: flex; flex-wrap: wrap; gap: .5rem; padding-top: 20px;}
 .page_wrapper .btn_list a {display: flex; align-items: center; padding: 16px 30px; border-color: unset; border-radius: 10px; text-decoration: none; color: var(--tg-theme-button-text-color); background: var(--tg-theme-button-color);} 
+
+
+/* Стилизация личного кабинета */
+.little-slider {}
+.little-slider img {border-radius: 20px;}
