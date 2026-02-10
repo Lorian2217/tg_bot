@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/assets/style.css?v=2">
+    <link rel="stylesheet" href="/assets/style.css?v=3">
     <link rel="stylesheet" href="/library/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="/library/owl-carousel/owl.theme.default.min.css">
 </head>
