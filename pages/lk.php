@@ -26,6 +26,8 @@
         .services .half {height: 100px; overflow: hidden; background: url('../image/tropical-swiss.jpg') no-repeat; background-size: cover; background-position: right;}
         .services .full::before, .services .half::before {content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #000; opacity: .5; border-radius: inherit; z-index: -1;}
         .services .half *, .services .full * {color: var(--tg-theme-link-color); font-size: 16px;}
+
+        .offers .item button {width: 60px; height: 60px;}
     </style>
 </head>
 <body>
@@ -52,6 +54,24 @@
                     <div class="name text-white">Мои задания</div>
                 </a>
             </div>
+        </div>
+        <div class="offers row mx-0 g-3 py-3">
+            <?for($i=1;$i<4;$i++):?>
+                <div class="col-6">
+                    <div class="item d-flex flex-column justify-content-between rounded-4" id="<?=$i;?>">
+                        <div class="name">Предложение <?=$i;?></div>
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>Кол-во:<span class="count"> </span></div>
+                                <div class="gap-3">
+                                    <button type="button" class="add border-0 bg-white rounded-2 fs-4">+</button>
+                                    <button type="button" class="remove border-0 bg-white rounded-2 fs-4">-</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?endfor;?>
         </div>
     </div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
