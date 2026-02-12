@@ -59,11 +59,11 @@
         <div class="offers row mx-0 g-3 py-3">
             <?for($i=1;$i<4;$i++):?>
                 <div class="col-12">
-                    <div class="item d-flex flex-column justify-content-between rounded-4 p-3" id="<?=$i;?>">
-                        <div class="name">Предложение <?=$i;?></div>
+                    <div class="item d-flex flex-column justify-content-between rounded-4 gap-4 p-3" id="<?=$i;?>">
+                        <div class="name fs-3">Предложение <?=$i;?></div>
                         <div>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div>Кол-во:<span class="count"> </span></div>
+                                <div class="fs-5">Кол-во: <span class="count"> </span></div>
                                 <div class="d-flex gap-3">
                                     <button type="button" class="add d-flex align-items-center justify-content-center border-0 bg-white rounded-2 fs-4">+</button>
                                     <button type="button" class="remove d-flex align-items-center justify-content-center border-0 bg-white rounded-2 fs-4">-</button>
