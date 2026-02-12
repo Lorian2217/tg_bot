@@ -1,13 +1,20 @@
 <?php
 header('Content-Type: application/json');
 
-
 // Получаем данные из POST
-$data = json_decode(file_get_contents('php://input'), true);
+$input = json_decode(file_get_contents('php://input'), true);
 
-if (isset($data))
+if (empty($input)) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Нет данных для обработки']);
+    exit;
+}
+
+if (isset($input['action']) && $input['action'] === 'register')
 {
-    file_put_contents('datas.txt', json_decode($data));
+    $result = insertData($input);
+} else {
+    $result = ['status' => 'ignored', 'message' => 'Действие не поддерживается'];
 }
 
 function getDbConnection() {
@@ -46,13 +53,13 @@ function getData($table, $fields = '*', $where = '') {
     return $data;
 }
 
-function insertData($table, $data) {
+function insertData($data) {
     $conn = getDbConnection();
 
     $fields = implode(', ', array_keys($data));
     $values = implode("', '", array_map('mysqli_real_escape_string', $conn, $data));
 
-    $query = "INSERT INTO user_data ($fields) VALUES ('$values')";
+    $query = "INSERT INTO user_data (username, tg_id, phone) VALUES ('$values')";
 
     $success = mysqli_query($conn, $query);
 
