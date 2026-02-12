@@ -27,7 +27,8 @@
         .services .full::before, .services .half::before {content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #000; opacity: .5; border-radius: inherit; z-index: -1;}
         .services .half *, .services .full * {color: var(--tg-theme-link-color); font-size: 16px;}
 
-        .offers .item button {width: 40px; height: 40px;}
+        .offers .item {min-width: 100px; background-image: url('../image/sauna.jpg'); background-repeat: no-repeat; background-size: cover; background-position: right;}
+        .offers .item button {width: 30px; height: 30px;}
     </style>
 </head>
 <body>
