@@ -64,9 +64,9 @@
                         <div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>Кол-во:<span class="count"> </span></div>
-                                <div class="gap-3">
-                                    <button type="button" class="add border-0 bg-white rounded-2 fs-4">+</button>
-                                    <button type="button" class="remove border-0 bg-white rounded-2 fs-4">-</button>
+                                <div class="d-flex gap-3">
+                                    <button type="button" class="add d-flex align-items-center justify-content-center border-0 bg-white rounded-2 fs-4">+</button>
+                                    <button type="button" class="remove d-flex align-items-center justify-content-center border-0 bg-white rounded-2 fs-4">-</button>
                                 </div>
                             </div>
                         </div>
