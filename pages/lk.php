@@ -100,7 +100,6 @@
             $('.offers .item .add').on('click touch', function(){
                 let currentCount = parseInt($(this).parents('.item').find('.count').text());
                 $(this).parents('.item').find('.count').text(currentCount + 1);
-                alert(Telegram.WebApp.initDataUnsafe.user.id);
             });
 
             $('.offers .item .remove').on('click touch', function(){

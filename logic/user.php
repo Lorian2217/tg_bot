@@ -1,16 +1,18 @@
 <?php
-$staticName = 'Данила';
-$staticPost = 'test@test.com';
+$servername = "localhost";
+$username = "cw809330";
+$password = "uzhBMnT7";
+$dbname   = "cw809330_test";
 
-$name = htmlspecialchars($_POST['name'] ?? '');
-$email = htmlspecialchars($_POST['email'] ?? '');
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
-$match = ($name === $staticName && $email === $staticPost);
-
-if ($match == false) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Такой пользователь не найден!']);
-} else {
-    echo json_encode(['success' => true, 'message' => 'Пользователь найден!']);
+if (!$conn) {
+    die("Соединение не удалось: " . mysqli_connect_error());
 }
+
+echo "Соединение установлено успешно!";
+
+// Здесь можно выполнять запросы к БД
+
+mysqli_close($conn);
 ?>
