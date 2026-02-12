@@ -1,9 +1,14 @@
 <?php
+header('Content-Type: application/json');
 
-if (isset($_POST))
+
+// Получаем данные из POST
+$data = json_decode(file_get_contents('php://input'), true);
+
+if (isset($data))
 {
     echo '<pre>';
-    print_r( $_POST );
+    print_r( $data );
     echo '</pre>';
 }
 
