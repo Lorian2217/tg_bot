@@ -27,7 +27,7 @@
         .services .full::before, .services .half::before {content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #000; opacity: .5; border-radius: inherit; z-index: -1;}
         .services .half *, .services .full * {color: var(--tg-theme-link-color); font-size: 16px;}
 
-        .offers .item {min-width: 100px; background-image: url('../image/sauna.jpg'); background-repeat: no-repeat; background-size: cover; background-position: right;}
+        .offers .item {min-height: 100px; background-image: url('../image/sauna.jpg'); background-repeat: no-repeat; background-size: cover; background-position: right;}
         .offers .item button {width: 30px; height: 30px;}
     </style>
 </head>
@@ -59,7 +59,7 @@
         <div class="offers row mx-0 g-3 py-3">
             <?for($i=1;$i<4;$i++):?>
                 <div class="col-12">
-                    <div class="item d-flex flex-column justify-content-between rounded-4" id="<?=$i;?>">
+                    <div class="item d-flex flex-column justify-content-between rounded-4 p-3" id="<?=$i;?>">
                         <div class="name">Предложение <?=$i;?></div>
                         <div>
                             <div class="d-flex justify-content-between align-items-center">
