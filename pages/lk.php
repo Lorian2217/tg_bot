@@ -81,6 +81,14 @@
     <script src="/library/owl-carousel/owl.carousel.min.js"></script>
     <script>
         $(document).ready(function(){
+            // Набор переменных пользователя
+            const chatId = Telegram.WebApp.initDataUnsafe.user.id;
+            const userName = Telegram.WebApp.initDataUnsafe.user.firstName;
+            const userSurname = Telegram.WebApp.initDataUnsafe.user.lastName;
+            const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
+            const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
+            // Набор переменных пользователя
+
             $('.little-slider.owl-carousel').owlCarousel({
                 loop: true,
                 dots: false,
@@ -92,6 +100,7 @@
             $('.offers .item .add').on('click touch', function(){
                 let currentCount = parseInt($(this).parents('.item').find('.count').text());
                 $(this).parents('.item').find('.count').text(currentCount + 1);
+                alert(Telegram.WebApp.initDataUnsafe.user.id);
             });
 
             $('.offers .item .remove').on('click touch', function(){
