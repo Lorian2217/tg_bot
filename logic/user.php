@@ -7,9 +7,12 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 if (isset($data))
 {
-    echo '<pre>';
-    print_r( $data );
-    echo '</pre>';
+    $answer = [
+        'success' => true,
+        'message' => $data
+    ];
+
+    echo json_encode($answer, JSON_UNESCAPED_UNICODE);
 }
 
 function getDbConnection() {
