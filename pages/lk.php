@@ -22,10 +22,8 @@
         .little-slider {padding-top: 30px; padding-bottom: 15px;}
         .little-slider img {border-radius: 20px; margin-top: 0px; margin-bottom: 0px; min-height: 150px; width: 100%;}
 
-        .services {display: flex; gap: 16px; align-items: stretch; justify-content: stretch;}
-        .services .full {position: relative; padding: 15px; display: block; text-decoration: none; width: 50%; border-radius: 20px; background: url('../image/abstract-earth.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
-        .services .half-wrapper {display: flex; flex-direction: column; gap: 16px;}
-        .services .half {position: relative; padding: 15px; display: block; text-decoration: none; width: 100%; height: 100px; overflow: hidden; border-radius: 20px; background: url('../image/tropical-swiss.jpg') no-repeat; background-size: cover; background-position: right; z-index: 1;}
+        .services .full {background: url('../image/abstract-earth.jpg') no-repeat; background-size: cover; background-position: right;}
+        .services .half {height: 100px; overflow: hidden; background: url('../image/tropical-swiss.jpg') no-repeat; background-size: cover; background-position: right;}
         .services .full::before, .services .half::before {content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 25%; backdrop-filter: blur(1px); z-index: -1;}
         .services .half *, .services .full * {color: var(--tg-theme-link-color); font-size: 16px;}
     </style>
@@ -41,16 +39,16 @@
             <a href="#"><img src="../image/gold-monstera.jpg" alt="image"></a>
             <a href="#"><img src="../image/tropical-swiss.jpg" alt="image"></a>
         </div>
-        <div class="services">
-            <a href="#" class="full"> 
+        <div class="services d-flex gap-3 align-items-stretch justify-content-stretch">
+            <a href="#" class="full d-block position-relative w-100 rounded-4 text-decoration-none p-3 z-1">
                 <div class="name">Мои предложения</div>
             </a>
-            <div class="half-wrapper">
-                <a href="#" class="half">
+            <div class="d-flex flex-column gap-3">
+                <a href="#" class="half d-block position-relative w-100 rounded-4 text-decoration-none p-3 z-1">
                     <div class="name">CLUB PLAY</div>
                     <div><sub>Начнём собирать баллы?</sub></div>
                 </a>
-                <a href="#" class="half">
+                <a href="#" class="half d-block position-relative w-100 rounded-4 text-decoration-none p-3 z-1">
                     <div class="name">Мои задания</div>
                 </a>
             </div>
