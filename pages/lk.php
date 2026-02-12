@@ -24,7 +24,7 @@
 
         .services .full {background: url('../image/abstract-earth.jpg') no-repeat; background-size: cover; background-position: right;}
         .services .half {height: 100px; overflow: hidden; background: url('../image/tropical-swiss.jpg') no-repeat; background-size: cover; background-position: right;}
-        .services .full::before, .services .half::before {content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #000; opacity: .5; z-index: -1;}
+        .services .full::before, .services .half::before {content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #000; opacity: .5; border-radius: inherit; z-index: -1;}
         .services .half *, .services .full * {color: var(--tg-theme-link-color); font-size: 16px;}
     </style>
 </head>
@@ -40,16 +40,16 @@
             <a href="#"><img src="../image/tropical-swiss.jpg" alt="image"></a>
         </div>
         <div class="services d-flex gap-3 align-items-stretch justify-content-stretch">
-            <a href="#" class="full d-block position-relative w-50 rounded-4 text-decoration-none text-white p-3 z-1">
-                <div class="name">Мои предложения</div>
+            <a href="#" class="full d-block position-relative w-50 rounded-4 text-decoration-none p-3 z-1">
+                <div class="name text-white">Мои предложения</div>
             </a>
             <div class="d-flex flex-column gap-3">
-                <a href="#" class="half d-block position-relative w-100 rounded-4 text-decoration-none text-white p-3 z-1">
-                    <div class="name">CLUB PLAY</div>
-                    <div><sub>Начнём собирать баллы?</sub></div>
+                <a href="#" class="half d-block position-relative w-100 rounded-4 text-decoration-none p-3 z-1">
+                    <div class="name text-white">CLUB PLAY</div>
+                    <div class="text-white"><sub>Начнём собирать баллы?</sub></div>
                 </a>
-                <a href="#" class="half d-block position-relative w-100 rounded-4 text-decoration-none text-white p-3 z-1">
-                    <div class="name">Мои задания</div>
+                <a href="#" class="half d-block position-relative w-100 rounded-4 text-decoration-none p-3 z-1">
+                    <div class="name text-white">Мои задания</div>
                 </a>
             </div>
         </div>
