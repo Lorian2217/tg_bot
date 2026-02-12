@@ -63,7 +63,7 @@
                         <div class="name fs-3">Предложение <?=$i;?></div>
                         <div>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="fs-5">Кол-во: <span class="count"> </span></div>
+                                <div class="fs-5">Кол-во: <span class="count">0</span></div>
                                 <div class="d-flex gap-3">
                                     <button type="button" class="add d-flex align-items-center justify-content-center border-0 bg-white rounded-2 fs-4">+</button>
                                     <button type="button" class="remove d-flex align-items-center justify-content-center border-0 bg-white rounded-2 fs-4">-</button>
@@ -87,6 +87,19 @@
                 nav: false,
                 margin: 10,
                 items: 1,
+            });
+
+            $('.offers .item .add').on('click touch', function(){
+                let currentCount = parseInt($(this).parents('.item').find('.count').text());
+                $(this).parents('.item').find('.count').text(currentCount + 1);
+            });
+
+            $('.offers .item .remove').on('click touch', function(){
+                let currentCount = parseInt($(this).parents('.item').find('.count').text());
+
+                if (currentCount > 0) {
+                    $(this).parents('.item').find('.count').text(currentCount - 1);
+                }
             });
         });
     </script>
