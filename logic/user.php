@@ -82,19 +82,14 @@ function updateData($data) {
     $id = $data['tg_id'];
     unset($data['tg_id']);
 
-    $set = implode(', ', array_map(fn($key) => "$key = ?", array_keys($data)));
+    echo json_encode($data);
+    die;
 
-    $stmt = mysqli_prepare($conn, "UPDATE user_data SET $set WHERE tg_id = ?");
+    $stmt = mysqli_prepare($conn, "UPDATE user_data SET datas = $data WHERE tg_id = $id");
 
     if (!$stmt) {
         throw new RuntimeException('Failed to prepare statement: ' . mysqli_error($conn));
     }
-
-    $types = str_repeat('s', count($data)) . 's';
-    $values = array_values($data);
-    $values[] = $id;
-
-    mysqli_stmt_bind_param($stmt, $types, ...$values);
 
     $success = mysqli_stmt_execute($stmt);
 
