@@ -1,4 +1,7 @@
 <?php
+// ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+
 header('Content-Type: application/json');
 
 // Получаем данные из POST
@@ -12,6 +15,7 @@ if (empty($input)) {
 
 if (isset($input['action']) && $input['action'] === 'register')
 {
+    unset($input['action']);
     $result = insertData($input);
 } else {
     $result = ['status' => 'ignored', 'message' => 'Действие не поддерживается'];
@@ -19,7 +23,7 @@ if (isset($input['action']) && $input['action'] === 'register')
 
 function getDbConnection() {
     $servername = "localhost";
-    $username = "cw809330";
+    $username = "cw809330_test";
     $password = "uzhBMnT7";
     $dbname   = "cw809330_test";
 
@@ -30,27 +34,6 @@ function getDbConnection() {
     }
 
     return $conn;
-}
-
-function getData($table, $fields = '*', $where = '') {
-    $conn = getDbConnection();
-
-    $query = "SELECT $fields FROM $table";
-    if (!empty($where)) {
-        $query .= " WHERE $where";
-    }
-
-    $result = mysqli_query($conn, $query);
-    $data = [];
-
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = $row;
-        }
-    }
-
-    mysqli_close($conn);
-    return $data;
 }
 
 function insertData($data) {
@@ -72,6 +55,27 @@ function insertData($data) {
     mysqli_close($conn);
     
     return $success;
+}
+
+function getData($table, $fields = '*', $where = '') {
+    $conn = getDbConnection();
+
+    $query = "SELECT $fields FROM $table";
+    if (!empty($where)) {
+        $query .= " WHERE $where";
+    }
+
+    $result = mysqli_query($conn, $query);
+    $data = [];
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+    }
+
+    mysqli_close($conn);
+    return $data;
 }
 
 function updateData($table, $data, $where) {
