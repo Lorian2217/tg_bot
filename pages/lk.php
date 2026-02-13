@@ -144,11 +144,6 @@
                 }
             });
 
-            window.Telegram.WebApp.ready();
-
-            const user = window.Telegram.WebApp.initDataUnsafe.user;
-            const firstName = user ? user.first_name : "гость";
-
             // Вставляем имя в HTML
             document.querySelector(".info .name").textContent = firstName;           
         });
