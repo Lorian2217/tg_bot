@@ -4,7 +4,6 @@
 
 header('Content-Type: application/json');
 
-// Получаем данные из POST
 $input = json_decode(file_get_contents('php://input'), true);
 
 if (empty($input)) {
@@ -15,8 +14,9 @@ if (empty($input)) {
 
 if (isset($input['action']) && $input['action'] === 'register')
 {
+    echo json_encode($input);
     unset($input['action']);
-    $result = insertData($input);
+    // $result = insertData($input);
 } else {
     $result = ['status' => 'ignored', 'message' => 'Действие не поддерживается'];
 }

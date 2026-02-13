@@ -51,41 +51,41 @@
 
     document.getElementById('chatIdField').value = chatId;
 
-    async function Auth(data) {
+    // async function Auth(data) {
 
-        try {
-            const res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
-                method: 'POST',
-                body: data
-            });
+    //     try {
+    //         const res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
+    //             method: 'POST',
+    //             body: data
+    //         });
 
-            const msg = await res.json();
+    //         const msg = await res.json();
 
-            if (!res.ok || !msg.success) {
-                const ErrorMessage = msg.error;
-                alert('Ошибка ' + ErrorMessage);
-                return false;
-            }
+    //         if (!res.ok || !msg.success) {
+    //             const ErrorMessage = msg.error;
+    //             alert('Ошибка ' + ErrorMessage);
+    //             return false;
+    //         }
 
-            alert(msg.message);
-            return true;
+    //         alert(msg.message);
+    //         return true;
 
-        } catch (err) {
-            alert('Ошибка ' + err.message);
-            return false;
-        }
+    //     } catch (err) {
+    //         alert('Ошибка ' + err.message);
+    //         return false;
+    //     }
 
-    }
+    // }
 
     document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
-        const isAuthSuccess = await Auth(formData);
+        // const isAuthSuccess = await Auth(formData);
 
-        if (!isAuthSuccess) {
-            return;
-        }
+        // if (!isAuthSuccess) {
+        //     return;
+        // }
 
         const response = await fetch('https://cw809330.tw1.ru/logic/tg_bot.php', {
             method: 'POST',
