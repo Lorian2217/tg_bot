@@ -14,7 +14,6 @@ if (empty($input)) {
 
 if (isset($input['action'])) 
 {
-
     switch ($input['action']) {
         case 'register':
             unset($input['action']);
@@ -29,7 +28,6 @@ if (isset($input['action']))
             $result = ['status' => 'ignored', 'message' => 'Действие не поддерживается'];
             break;
     }
-    
 }
 
 // if (isset($input['action']) && $input['action'] === 'register')
@@ -82,10 +80,10 @@ function updateData($data) {
     $id = $data['tg_id'];
     unset($data['tg_id']);
 
-    echo json_encode($data);
-    die;
+    $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
+    $escapedJsonData = mysqli_real_escape_string($conn, $jsonData);
 
-    $stmt = mysqli_prepare($conn, "UPDATE user_data SET datas = $data WHERE tg_id = $id");
+    $stmt = mysqli_prepare($conn, "UPDATE user_data SET datas = '$escapedJsonData' WHERE tg_id = $id");
 
     if (!$stmt) {
         throw new RuntimeException('Failed to prepare statement: ' . mysqli_error($conn));
