@@ -57,13 +57,20 @@ function insertData($data) {
     $conn = getDbConnection();
 
     $fields = implode(', ', array_keys($data));
-    $values = implode("', '", array_map('mysqli_real_escape_string', $conn, $data));
+    $placeholders = implode(', ', array_fill(0, count($data), '?'));
 
-    $query = "INSERT INTO user_data (username, tg_id, phone) VALUES ('$values')";
+    $stmt = mysqli_prepare($conn, 
+        "INSERT INTO user_data ($fields) VALUES ($placeholders)"
+    );
 
-    $success = mysqli_query($conn, $query);
+    $types = str_repeat('s', count($data));
+    mysqli_stmt_bind_param($stmt, $types, ...array_values($data));
 
+    $success = mysqli_stmt_execute($stmt);
+    
+    mysqli_stmt_close($stmt);
     mysqli_close($conn);
+    
     return $success;
 }
 
