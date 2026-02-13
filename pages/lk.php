@@ -82,13 +82,14 @@
     <script>
         $(document).ready(function(){
 
-            // Набор переменных пользователя
-            const chatId = Telegram.WebApp.initDataUnsafe.user.id;
-            const userName = Telegram.WebApp.initDataUnsafe.user.firstName;
-            const userSurname = Telegram.WebApp.initDataUnsafe.user.lastName;
-            const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
-            const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
-            // Набор переменных пользователя 
+            window.Telegram.WebApp.ready();
+
+            const user = window.Telegram.WebApp.initDataUnsafe.user || {}; 
+            const chatId = user.id || 0;
+            const firstName = user.first_name || 'гость';
+            const lastName = user.last_name || '';
+            const username = user.username || '';
+            const userImg = user.photo_url || '';
 
             async function Send(data){
                 try {
