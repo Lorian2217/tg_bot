@@ -30,11 +30,17 @@
         .offers .item {min-height: 100px; background-image: url('../image/sauna.jpg'); background-repeat: no-repeat; background-size: cover; background-position: right;}
         .offers .item button {width: 30px; height: 30px;}
     </style>
+    <script>
+        $(document).ready(function(){
+            const userName = Telegram.WebApp.initDataUnsafe.user.firstName;
+            $('.info .name').text(userName);
+        });
+    </script>
 </head>
 <body>
     <div class="Main">
         <div class="info">
-            <h1>Здравствуйте, {name}</h1>
+            <h1>Здравствуйте, <span class="name">{name}</span></h1>
             <div class="subtext">Рады видеть вас с нами!</div>
         </div>
         <div class="little-slider owl-carousel">
@@ -81,6 +87,35 @@
     <script src="/library/owl-carousel/owl.carousel.min.js"></script>
     <script>
         $(document).ready(function(){
+            // Набор переменных пользователя
+            const chatId = Telegram.WebApp.initDataUnsafe.user.id;
+            const userSurname = Telegram.WebApp.initDataUnsafe.user.lastName;
+            const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
+            const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
+            // Набор переменных пользователя
+
+            async function Send(data, action){
+                try {
+                    const res = await fetch('', {
+                        method: 'POST',
+                        body: data,
+                        action: action
+                    });
+
+                    const msg = await res.json();
+
+                    if (!res.ok || !msg.success) {
+                        const ErrorMessage = msg.error;
+                        alert('Ошибка ' + ErrorMessage);
+                        return false;
+                    }
+
+                } catch (err) {
+                    alert('Ошибка ' + err.message);
+                    return false;
+                }
+            }
+
             $('.little-slider.owl-carousel').owlCarousel({
                 loop: true,
                 dots: false,
@@ -102,13 +137,7 @@
                 }
             });
 
-            // Набор переменных пользователя
-            const chatId = Telegram.WebApp.initDataUnsafe.user.id;
-            const userName = Telegram.WebApp.initDataUnsafe.user.firstName;
-            const userSurname = Telegram.WebApp.initDataUnsafe.user.lastName;
-            const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
-            const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
-            // Набор переменных пользователя
+            
         });
     </script>
 </body>
