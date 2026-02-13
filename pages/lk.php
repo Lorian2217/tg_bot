@@ -30,12 +30,6 @@
         .offers .item {min-height: 100px; background-image: url('../image/sauna.jpg'); background-repeat: no-repeat; background-size: cover; background-position: right;}
         .offers .item button {width: 30px; height: 30px;}
     </style>
-    <script>
-        $(document).ready(function(){
-            const userName = Telegram.WebApp.initDataUnsafe.user.firstName;
-            $('.info .name').text(userName);
-        });
-    </script>
 </head>
 <body>
     <div class="Main">
@@ -87,12 +81,6 @@
     <script src="/library/owl-carousel/owl.carousel.min.js"></script>
     <script>
         $(document).ready(function(){
-            // Набор переменных пользователя
-            const chatId = Telegram.WebApp.initDataUnsafe.user.id;
-            const userSurname = Telegram.WebApp.initDataUnsafe.user.lastName;
-            const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
-            const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
-            // Набор переменных пользователя
 
             async function Send(data, action){
                 try {
@@ -137,7 +125,22 @@
                 }
             });
 
+            window.Telegram.WebApp.ready();
+
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            const firstName = user ? user.first_name : "гость";
+
+            // Вставляем имя в HTML
+            document.querySelector(".info .name").textContent = firstName;
             
+
+            // Набор переменных пользователя
+            const chatId = Telegram.WebApp.initDataUnsafe.user.id;
+            const userName = Telegram.WebApp.initDataUnsafe.user.firstName;
+            const userSurname = Telegram.WebApp.initDataUnsafe.user.lastName;
+            const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
+            const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
+            // Набор переменных пользователя            
         });
     </script>
 </body>
