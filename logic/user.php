@@ -32,6 +32,14 @@ if (isset($input['action']))
     
 }
 
+// if (isset($input['action']) && $input['action'] === 'register')
+// {
+//     unset($input['action']);
+//     $result = insertData($input);
+// } else {
+//     $result = ['status' => 'ignored', 'message' => 'Действие не поддерживается'];
+// }
+
 function getDbConnection() {
     $servername = "localhost";
     $username = "cw809330_test";
@@ -75,14 +83,14 @@ function updateData($data) {
     unset($data['tg_id']);
 
     $set = implode(', ', array_map(fn($key) => "$key = ?", array_keys($data)));
+
     $stmt = mysqli_prepare($conn, "UPDATE user_data SET $set WHERE tg_id = ?");
 
     if (!$stmt) {
-        die("Ошибка подготовки запроса: " . mysqli_error($conn));
+        throw new RuntimeException('Failed to prepare statement: ' . mysqli_error($conn));
     }
 
     $types = str_repeat('s', count($data)) . 's';
-
     $values = array_values($data);
     $values[] = $id;
 
@@ -93,7 +101,7 @@ function updateData($data) {
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
 
-    return json_encode($success);
+    return $success;
 }
 
 function getData($table, $fields = '*', $where = '') {
