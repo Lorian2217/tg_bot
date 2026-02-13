@@ -82,7 +82,7 @@
     <script>
         $(document).ready(function(){
 
-            async function Send(data, action){
+            async function Send(data){
                 try {
                     const bodyData = {data, action};
                     const res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
@@ -95,19 +95,13 @@
 
                     return msg;
 
-                    // if (!res.ok || !msg.success) {
-                    //     const ErrorMessage = msg.error;
-                    //     alert('Ошибка ' + ErrorMessage);
-                    //     return false;
-                    // }
-
                 } catch (err) {
                     alert('Ошибка ' + err.message);
                     return false;
                 }
             }
 
-            Send({ username: 'Данила' }, 'register').then(result => {
+            Send({ username: 'Данила', action: 'register' }).then(result => {
                 console.log('Ответ с сервера:', result);
             });
 

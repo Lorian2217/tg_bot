@@ -14,7 +14,7 @@ if (empty($input)) {
 
 if (isset($input['action']) && $input['action'] === 'register')
 {
-    echo json_encode($input);
+    echo gettype($input);
     unset($input['action']);
     // $result = insertData($input);
 } else {
