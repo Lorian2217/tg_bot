@@ -59,7 +59,7 @@
         <div class="offers row mx-0 g-3 py-3">
             <?for($i=1;$i<4;$i++):?>
                 <div class="col-12">
-                    <div class="item d-flex flex-column justify-content-between rounded-4 gap-4 p-3" id="<?=$i;?>">
+                    <div class="item d-flex flex-column justify-content-between rounded-4 gap-4 p-3" data-id="<?=$i;?>">
                         <div class="name fs-3">Предложение <?=$i;?></div>
                         <div>
                             <div class="d-flex justify-content-between align-items-center">
@@ -82,13 +82,20 @@
     <script>
         $(document).ready(function(){
 
+            // Набор переменных пользователя
+            const chatId = Telegram.WebApp.initDataUnsafe.user.id;
+            const userName = Telegram.WebApp.initDataUnsafe.user.firstName;
+            const userSurname = Telegram.WebApp.initDataUnsafe.user.lastName;
+            const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
+            const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
+            // Набор переменных пользователя 
+
             async function Send(data){
                 try {
-                    const bodyData = {data, action};
                     const res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify(bodyData)
+                        body: JSON.stringify(data)
                     });
 
                     const msg = await res.json();
@@ -101,10 +108,6 @@
                 }
             }
 
-            Send({ username: 'Данила', action: 'register' }).then(result => {
-                console.log('Ответ с сервера:', result);
-            });
-
             $('.little-slider.owl-carousel').owlCarousel({
                 loop: true,
                 dots: false,
@@ -114,8 +117,22 @@
             });
 
             $('.offers .item .add').on('click touch', function(){
+                let itemId = $(this).parents('.item').data('id');
+
                 let currentCount = parseInt($(this).parents('.item').find('.count').text());
-                $(this).parents('.item').find('.count').text(currentCount + 1);
+                currentCount += 1;
+                $(this).parents('.item').find('.count').text(currentCount);
+
+                const dataToSend = {
+                    id: itemId,
+                    tg_id: chatId,
+                    count: currentCount,
+                    action: 'update'
+                };
+
+                Send(dataToSend).then(result => {
+                    console.log('Ответ с сервера:', result);
+                });
             });
 
             $('.offers .item .remove').on('click touch', function(){
@@ -132,16 +149,7 @@
             const firstName = user ? user.first_name : "гость";
 
             // Вставляем имя в HTML
-            document.querySelector(".info .name").textContent = firstName;
-
-
-            // Набор переменных пользователя
-            const chatId = Telegram.WebApp.initDataUnsafe.user.id;
-            const userName = Telegram.WebApp.initDataUnsafe.user.firstName;
-            const userSurname = Telegram.WebApp.initDataUnsafe.user.lastName;
-            const userTgname = Telegram.WebApp.initDataUnsafe.user.username;
-            const userImg = Telegram.WebApp.initDataUnsafe.user.photo_url;
-            // Набор переменных пользователя            
+            document.querySelector(".info .name").textContent = firstName;           
         });
     </script>
 </body>

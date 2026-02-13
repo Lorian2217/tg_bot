@@ -12,14 +12,33 @@ if (empty($input)) {
     exit;
 }
 
-if (isset($input['action']) && $input['action'] === 'register')
+if (isset($input['action'])) 
 {
-    echo gettype($input);
-    unset($input['action']);
-    // $result = insertData($input);
-} else {
-    $result = ['status' => 'ignored', 'message' => 'Действие не поддерживается'];
+
+    switch ($input['action']) {
+        case 'register':
+            unset($input['action']);
+            $result = insertData($input);
+            break;
+        case 'update':
+            unset($input['action']);
+            $result = updateData($input);
+            break;
+        
+        default:
+            $result = ['status' => 'ignored', 'message' => 'Действие не поддерживается'];
+            break;
+    }
+    
 }
+
+// if (isset($input['action']) && $input['action'] === 'register')
+// {
+//     unset($input['action']);
+//     $result = insertData($input);
+// } else {
+//     $result = ['status' => 'ignored', 'message' => 'Действие не поддерживается'];
+// }
 
 function getDbConnection() {
     $servername = "localhost";
@@ -57,6 +76,29 @@ function insertData($data) {
     return $success;
 }
 
+function updateData($data) {
+    $conn = getDbConnection();
+
+    $id = $data['tg_id'];
+    unset($data['tg_id']);
+
+    echo json_encode( $data );
+    exit;
+    
+    $updates = [];
+    foreach ($data as $field => $value) {
+        $updates[] = "$field = '" . mysqli_real_escape_string($conn, $value) . "'";
+    }
+    $updateStr = implode(', ', $updates);
+
+    $query = "UPDATE $table SET $updateStr WHERE $where";
+
+    $success = mysqli_query($conn, $query);
+
+    mysqli_close($conn);
+    return $success;
+}
+
 function getData($table, $fields = '*', $where = '') {
     $conn = getDbConnection();
 
@@ -76,22 +118,5 @@ function getData($table, $fields = '*', $where = '') {
 
     mysqli_close($conn);
     return $data;
-}
-
-function updateData($table, $data, $where) {
-    $conn = getDbConnection();
-
-    $updates = [];
-    foreach ($data as $field => $value) {
-        $updates[] = "$field = '" . mysqli_real_escape_string($conn, $value) . "'";
-    }
-    $updateStr = implode(', ', $updates);
-
-    $query = "UPDATE $table SET $updateStr WHERE $where";
-
-    $success = mysqli_query($conn, $query);
-
-    mysqli_close($conn);
-    return $success;
 }
 ?>
