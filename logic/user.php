@@ -23,12 +23,6 @@ if (isset($input['action']))
         case 'update':
             unset($input['action']);
             $result = updateData($input);
-
-            if ($result) {
-                echo json_encode(['success' => true, 'message' => 'Данные обновлены']);
-            } else {
-                echo json_encode(['success' => false, 'error' => 'Ошибка обновления']);
-            }
             break;
         
         default:
@@ -98,6 +92,8 @@ function updateData($data) {
 
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
+
+    return json_encode($success);
 }
 
 function getData($table, $fields = '*', $where = '') {
