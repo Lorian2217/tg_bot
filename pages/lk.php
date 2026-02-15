@@ -145,7 +145,7 @@
             });
 
             // Вставляем имя в HTML
-            document.querySelector(".info .name").textContent = firstName;           
+            document.querySelector(".info .name").textContent = firstName;
         });
     </script>
 </body>

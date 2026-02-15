@@ -23,7 +23,6 @@ if (isset($input['action']))
             unset($input['action']);
             $result = updateData($input);
             break;
-        
         default:
             $result = ['status' => 'ignored', 'message' => 'Действие не поддерживается'];
             break;
@@ -40,9 +39,9 @@ if (isset($input['action']))
 
 function getDbConnection() {
     $servername = "localhost";
-    $username = "cw809330_test";
-    $password = "uzhBMnT7";
-    $dbname   = "cw809330_test";
+    $username = "ch555227_test";
+    $password = "vtd1@5UjzxxM";
+    $dbname   = "ch555227_test";
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -60,7 +59,7 @@ function insertData($data) {
     $placeholders = implode(', ', array_fill(0, count($data), '?'));
 
     $stmt = mysqli_prepare($conn, 
-        "INSERT INTO user_data ($fields) VALUES ($placeholders)"
+        "INSERT INTO users ($fields) VALUES ($placeholders)"
     );
 
     $types = str_repeat('s', count($data));
@@ -83,7 +82,7 @@ function updateData($data) {
     $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE);
     $escapedJsonData = mysqli_real_escape_string($conn, $jsonData);
 
-    $stmt = mysqli_prepare($conn, "UPDATE user_data SET datas = '$escapedJsonData' WHERE tg_id = $id");
+    $stmt = mysqli_prepare($conn, "UPDATE users SET data = '$escapedJsonData' WHERE tg_id = $id");
 
     if (!$stmt) {
         throw new RuntimeException('Failed to prepare statement: ' . mysqli_error($conn));
