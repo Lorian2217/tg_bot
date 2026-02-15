@@ -93,7 +93,7 @@
 
             async function Send(data){
                 try {
-                    const res = await fetch('https://cw809330.tw1.ru/logic/user.php', {
+                    const res = await fetch('https://ch555227.tw1.ru/logic/user.php', {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
                         body: JSON.stringify(data)
