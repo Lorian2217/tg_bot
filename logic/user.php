@@ -39,9 +39,9 @@ if (isset($input['action']))
 
 function getDbConnection() {
     $servername = "localhost";
-    $username = "ch555227_test";
+    $username = "ch555227_testbd";
     $password = "vtd1@5UjzxxM";
-    $dbname   = "ch555227_test";
+    $dbname   = "ch555227_testbd";
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
