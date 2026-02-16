@@ -42,18 +42,22 @@
             <a href="#"><img src="../image/gold-monstera.jpg" alt="image"></a>
             <a href="#"><img src="../image/tropical-swiss.jpg" alt="image"></a>
         </div>
-        <div class="services d-flex gap-3 align-items-stretch justify-content-stretch">
-            <a href="#" class="full d-block position-relative w-50 rounded-4 text-decoration-none p-3 z-1">
-                <div class="name text-white">Мои предложения</div>
-            </a>
-            <div class="d-flex flex-column gap-3">
-                <a href="#" class="half d-block position-relative w-100 rounded-4 text-decoration-none p-3 z-1">
-                    <div class="name text-white">CLUB PLAY</div>
-                    <div class="text-white"><sub>Начнём собирать баллы?</sub></div>
+        <div class="services row align-items-stretch justify-content-stretch g-3">
+            <div class="col-7">
+                <a href="#" class="full d-block text-decoration-none position-relative rounded-4 p-3 z-1">
+                    <div class="name text-white">Мои предложения</div>
                 </a>
-                <a href="#" class="half d-block position-relative w-100 rounded-4 text-decoration-none p-3 z-1">
-                    <div class="name text-white">Мои задания</div>
-                </a>
+            </div>
+            <div class="col-5">
+                <div class="d-flex flex-column gap-3">
+                    <a href="#" class="half d-block text-decoration-none position-relative rounded-4 p-3 z-1">
+                        <div class="name text-white">CLUB PLAY</div>
+                        <div class="text-white"><sub>Начнём собирать баллы?</sub></div>
+                    </a>
+                    <a href="#" class="half d-block text-decoration-none position-relative rounded-4 p-3 z-1">
+                        <div class="name text-white">Мои задания</div>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="offers row mx-0 g-3 py-3">
