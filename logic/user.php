@@ -1,6 +1,6 @@
 <?php
-// ini_set('display_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 header('Content-Type: application/json');
 
@@ -40,7 +40,7 @@ if (isset($input['action']))
 function getDbConnection() {
     $servername = "localhost";
     $username = "ch555227_testbd";
-    $password = "vtd1@5UjzxxM";
+    $password = "yqQDQs2F";
     $dbname   = "ch555227_testbd";
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
